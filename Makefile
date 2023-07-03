@@ -4,7 +4,10 @@ CC=     g++
  
 CFLAGS= -g -fopenmp -D_USE_OMP -msse4.2 -O3 -fomit-frame-pointer -funroll-loops  
  
-LFLAGS= -std=c++11 -I ./
+# Specify the path to the Boost include directory
+BOOST_INCLUDE_DIR = $(CONDA_PREFIX)/include
+
+LFLAGS= -std=c++11 -I ./ -I $(BOOST_INCLUDE_DIR)
  
 EXE=    cnef
  
@@ -22,7 +25,7 @@ HD=     cnef.h qgrams.h file.h qlist.h Makefile
 OBJ=    $(SRC:.cc=.o) 
  
 .cc.o: 
-	$(CC) $(CFLAGS)-c $(LFLAGS) $< 
+	$(CC) $(CFLAGS) -c $(LFLAGS) $< 
  
 all:    $(EXE) 
  
